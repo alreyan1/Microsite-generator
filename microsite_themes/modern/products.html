@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - {{ business.name }}</title>
+    <link href="assets/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if business.logo_path %}
+                <img src="images/logo.jpg" alt="{{ business.name }}" class="logo">
+                {% endif %}
+                <h1>{{ business.name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link active">Products</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="products-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Our Products</h1>
+                <p>Explore our complete collection of amazing products</p>
+            </div>
+
+            <div class="products-grid">
+                {% for product in business.products %}
+                <div class="product-card">
+                    <div class="product-image">
+                        {% if product.image_path %}
+                        <img src="images/product_{{ loop.index0 }}{{ product.image_path.split('.')[-1] and '.' + product.image_path.split('.')[-1] or '.jpg' }}" alt="{{ product.name }}">
+                        {% else %}
+                        <div class="product-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        {% endif %}
+                        <div class="product-overlay">
+                            <button class="btn-quick-view">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>{{ product.name }}</h3>
+                        {% if product.description %}
+                        <p class="product-description">{{ product.description }}</p>
+                        {% endif %}
+                        <div class="product-bottom">
+                            {% if product.price %}
+                            <span class="price">${{ "%.2f"|format(product.price) }}</span>
+                            {% endif %}
+                            <button class="btn btn-primary btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if not business.products %}
+            <div class="empty-state">
+                <i class="fas fa-box-open"></i>
+                <h3>No Products Available</h3>
+                <p>We're working on adding new products. Check back soon!</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <h3>{{ business.name }}</h3>
+                        {% if business.tagline %}
+                        <p>{{ business.tagline }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="about.html">About</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <ul>
+                                {% if business.email %}
+                                <li><i class="fas fa-envelope"></i> {{ business.email }}</li>
+                                {% endif %}
+                                {% if business.phone %}
+                                <li><i class="fas fa-phone"></i> {{ business.phone }}</li>
+                                {% endif %}
+                                {% if business.address %}
+                                <li><i class="fas fa-map-marker-alt"></i> {{ business.address }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                {% if business.facebook %}
+                                <a href="{{ business.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                                {% endif %}
+                                {% if business.instagram %}
+                                <a href="{{ business.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                                {% endif %}
+                                {% if business.twitter %}
+                                <a href="{{ business.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 {{ business.name }}. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

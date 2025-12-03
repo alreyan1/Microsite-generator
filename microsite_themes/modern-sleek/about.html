@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - {{ business_name }}</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if logo_url %}
+                <img src="{{ logo_url }}" alt="{{ business_name }}" class="logo">
+                {% endif %}
+                <h1>{{ business_name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html" class="active">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>{{ about_text }}</p>
+                </div>
+                {% if about_image %}
+                <div class="about-image">
+                    <img src="{{ about_image }}" alt="{{ business_name }}">
+                </div>
+                {% endif %}
+            </div>
+
+            {% if team_members %}
+            <div class="team-section">
+                <h3>Our Team</h3>
+                <div class="team-grid">
+                    {% for member in team_members %}
+                    <div class="team-card">
+                        {% if member.image %}
+                        <img src="{{ member.image }}" alt="{{ member.name }}" class="team-member-image">
+                        {% endif %}
+                        <h4>{{ member.name }}</h4>
+                        <p class="team-member-role">{{ member.role }}</p>
+                        <p class="team-member-bio">{{ member.bio }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>{{ business_name }}</h3>
+                    <p>{{ description }}</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        {% if email %}
+                        <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+                        {% endif %}
+                        {% if phone %}
+                        <li>{{ phone }}</li>
+                        {% endif %}
+                        {% if address %}
+                        <li>{{ address }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        {% if facebook %}
+                        <li><a href="{{ facebook }}" target="_blank">Facebook</a></li>
+                        {% endif %}
+                        {% if instagram %}
+                        <li><a href="{{ instagram }}" target="_blank">Instagram</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ current_year }} {{ business_name }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

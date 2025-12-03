@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - {{ business_name }}</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if logo_url %}
+                <img src="{{ logo_url }}" alt="{{ business_name }}" class="logo">
+                {% endif %}
+                <h1>{{ business_name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html" class="active">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <div class="section-header">
+                <div class="ornament top"></div>
+                <h2>Our Heritage</h2>
+                <p>A tradition of excellence</p>
+                <div class="ornament bottom"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="content-wrapper">
+                        <p>{{ about_text }}</p>
+                    </div>
+                </div>
+                {% if about_image %}
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="{{ about_image }}" alt="{{ business_name }}">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    {% if values %}
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="ornament top"></div>
+                <h2>Our Core Values</h2>
+                <p>The pillars of our excellence</p>
+                <div class="ornament bottom"></div>
+            </div>
+            <div class="values-grid">
+                {% for value in values %}
+                <div class="value-card">
+                    <div class="value-icon">{{ value.icon }}</div>
+                    <h3>{{ value.title }}</h3>
+                    <p>{{ value.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if team_members %}
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="ornament top"></div>
+                <h2>Master Craftsmen</h2>
+                <p>The artisans behind our creations</p>
+                <div class="ornament bottom"></div>
+            </div>
+            <div class="team-grid">
+                {% for member in team_members %}
+                <div class="team-card">
+                    {% if member.image %}
+                    <div class="team-image-container">
+                        <div class="image-frame">
+                            <img src="{{ member.image }}" alt="{{ member.name }}" class="team-member-image">
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="team-member-info">
+                        <h3>{{ member.name }}</h3>
+                        <p class="team-member-role">{{ member.role }}</p>
+                        <p class="team-member-bio">{{ member.bio }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if achievements %}
+    <section class="achievements-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="ornament top"></div>
+                <h2>Our Achievements</h2>
+                <p>A legacy of distinction</p>
+                <div class="ornament bottom"></div>
+            </div>
+            <div class="achievements-grid">
+                {% for achievement in achievements %}
+                <div class="achievement-card">
+                    <div class="achievement-icon">{{ achievement.icon }}</div>
+                    <h3>{{ achievement.title }}</h3>
+                    <p>{{ achievement.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="ornament top"></div>
+                    <h3>{{ business_name }}</h3>
+                    <p>{{ description }}</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        {% if email %}
+                        <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+                        {% endif %}
+                        {% if phone %}
+                        <li>{{ phone }}</li>
+                        {% endif %}
+                        {% if address %}
+                        <li>{{ address }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        {% if facebook %}
+                        <li><a href="{{ facebook }}" target="_blank">Facebook</a></li>
+                        {% endif %}
+                        {% if instagram %}
+                        <li><a href="{{ instagram }}" target="_blank">Instagram</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="ornament top"></div>
+                <p>&copy; {{ current_year }} {{ business_name }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

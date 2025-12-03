@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ business_name }}</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if logo_url %}
+                <img src="{{ logo_url }}" alt="{{ business_name }}" class="logo">
+                {% endif %}
+                <h1>{{ business_name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">{{ business_name }}</h1>
+            <p class="hero-subtitle">{{ tagline }}</p>
+            <div class="hero-buttons">
+                <a href="products.html" class="btn btn-primary">View Products</a>
+                <a href="about.html" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+                <p>Discover our selection</p>
+            </div>
+            <div class="products-grid">
+                {% for product in products[:3] %}
+                <div class="product-card">
+                    {% if product.image_url %}
+                    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image">
+                    {% endif %}
+                    <div class="product-content">
+                        <h3 class="product-title">{{ product.name }}</h3>
+                        <p class="product-description">{{ product.description }}</p>
+                        <p class="product-price">${{ "%.2f"|format(product.price) }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>{{ business_name }}</h3>
+                    <p>{{ description }}</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        {% if email %}
+                        <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+                        {% endif %}
+                        {% if phone %}
+                        <li>{{ phone }}</li>
+                        {% endif %}
+                        {% if address %}
+                        <li>{{ address }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        {% if facebook %}
+                        <li><a href="{{ facebook }}" target="_blank">Facebook</a></li>
+                        {% endif %}
+                        {% if instagram %}
+                        <li><a href="{{ instagram }}" target="_blank">Instagram</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ current_year }} {{ business_name }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

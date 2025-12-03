@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - {{ business.name }}</title>
+    <link href="assets/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if business.logo_path %}
+                <img src="images/logo.jpg" alt="{{ business.name }}" class="logo">
+                {% endif %}
+                <h1>{{ business.name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="about.html" class="nav-link active">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>About {{ business.name }}</h1>
+                {% if business.tagline %}
+                <p class="lead">{{ business.tagline }}</p>
+                {% endif %}
+            </div>
+
+            <div class="about-content">
+                <div class="about-story">
+                    <div class="story-text">
+                        <h2>Our Story</h2>
+                        <p>Welcome to {{ business.name }}, where passion meets excellence. We've built our reputation on delivering outstanding products and unmatched customer service.</p>
+                        
+                        {% if business.tagline %}
+                        <p>"{{ business.tagline }}" - This philosophy drives everything we do, from product selection to customer relationships.</p>
+                        {% endif %}
+                        
+                        <p>Our commitment to quality and innovation has made us a trusted name in the industry. We're not just a business; we're a community dedicated to providing value and building lasting relationships with our customers.</p>
+                        
+                        <p>Thank you for choosing {{ business.name }}. We're excited to serve you and exceed your expectations.</p>
+                    </div>
+                    
+                    {% if business.logo_path %}
+                    <div class="story-visual">
+                        <img src="images/logo.jpg" alt="{{ business.name }}" class="story-image">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2>Get In Touch</h2>
+                <div class="contact-cards">
+                    {% if business.email %}
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if business.phone %}
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p><a href="tel:{{ business.phone }}">{{ business.phone }}</a></p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if business.address %}
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>{{ business.address }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if business.facebook or business.instagram or business.twitter %}
+            <div class="social-section">
+                <h2>Connect With Us</h2>
+                <p>Follow us on social media for updates, news, and special offers</p>
+                <div class="social-grid">
+                    {% if business.facebook %}
+                    <a href="{{ business.facebook }}" target="_blank" class="social-card facebook">
+                        <i class="fab fa-facebook"></i>
+                        <h3>Facebook</h3>
+                        <p>Follow our page for updates</p>
+                    </a>
+                    {% endif %}
+                    {% if business.instagram %}
+                    <a href="{{ business.instagram }}" target="_blank" class="social-card instagram">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Instagram</h3>
+                        <p>See our latest photos</p>
+                    </a>
+                    {% endif %}
+                    {% if business.twitter %}
+                    <a href="{{ business.twitter }}" target="_blank" class="social-card twitter">
+                        <i class="fab fa-twitter"></i>
+                        <h3>Twitter</h3>
+                        <p>Join the conversation</p>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <h3>{{ business.name }}</h3>
+                        {% if business.tagline %}
+                        <p>{{ business.tagline }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="about.html">About</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <ul>
+                                {% if business.email %}
+                                <li><i class="fas fa-envelope"></i> {{ business.email }}</li>
+                                {% endif %}
+                                {% if business.phone %}
+                                <li><i class="fas fa-phone"></i> {{ business.phone }}</li>
+                                {% endif %}
+                                {% if business.address %}
+                                <li><i class="fas fa-map-marker-alt"></i> {{ business.address }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                {% if business.facebook %}
+                                <a href="{{ business.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                                {% endif %}
+                                {% if business.instagram %}
+                                <a href="{{ business.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                                {% endif %}
+                                {% if business.twitter %}
+                                <a href="{{ business.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 {{ business.name }}. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

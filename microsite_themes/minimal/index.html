@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ business.name }}</title>
+    <link href="assets/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if business.logo_path %}
+                <img src="images/logo.jpg" alt="{{ business.name }}" class="logo">
+                {% endif %}
+                <h1>{{ business.name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>{{ business.name }}</h1>
+                {% if business.tagline %}
+                <p class="tagline">{{ business.tagline }}</p>
+                {% endif %}
+                <a href="products.html" class="cta-button">Shop Now</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="featured-products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid">
+                {% for product in business.products[:3] %}
+                <div class="product-card">
+                    {% if product.image_path %}
+                    <img src="images/product_{{ loop.index0 }}{{ product.image_path.split('.')[-1] and '.' + product.image_path.split('.')[-1] or '.jpg' }}" alt="{{ product.name }}">
+                    {% else %}
+                    <div class="product-placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    {% endif %}
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        {% if product.price %}
+                        <p class="price">${{ "%.2f"|format(product.price) }}</p>
+                        {% endif %}
+                        {% if product.description %}
+                        <p class="description">{{ product.description[:100] }}{% if product.description|length > 100 %}...{% endif %}</p>
+                        {% endif %}
+                        <button class="buy-button">Buy Now</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center">
+                <a href="products.html" class="view-all-button">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <h2>About {{ business.name }}</h2>
+                {% if business.tagline %}
+                <p>{{ business.tagline }}</p>
+                {% endif %}
+                <p>Welcome to {{ business.name }}. We're dedicated to providing you with the best products and exceptional service.</p>
+                <a href="about.html" class="learn-more-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>{{ business.name }}</h3>
+                    {% if business.tagline %}
+                    <p>{{ business.tagline }}</p>
+                    {% endif %}
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    {% if business.email %}
+                    <p><i class="fas fa-envelope"></i> {{ business.email }}</p>
+                    {% endif %}
+                    {% if business.phone %}
+                    <p><i class="fas fa-phone"></i> {{ business.phone }}</p>
+                    {% endif %}
+                    {% if business.address %}
+                    <p><i class="fas fa-map-marker-alt"></i> {{ business.address }}</p>
+                    {% endif %}
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        {% if business.facebook %}
+                        <a href="{{ business.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                        {% endif %}
+                        {% if business.instagram %}
+                        <a href="{{ business.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                        {% endif %}
+                        {% if business.twitter %}
+                        <a href="{{ business.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 {{ business.name }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

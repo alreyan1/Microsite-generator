@@ -1,0 +1,419 @@
+/* Fancy Royal Theme */
+:root {
+    --royal-purple: #4a1f7f;
+    --royal-gold: #ffd700;
+    --primary-color: var(--royal-purple);
+    --secondary-color: var(--royal-gold);
+    --accent-color: #8a2be2;
+    --text-color: #2d1b4b;
+    --text-light: #574b76;
+    --background: #ffffff;
+    --background-alt: #f8f7fc;
+    --border-color: #e6e4f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Text', 'Cormorant Garamond', serif;
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--background);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--background);
+    padding: 1rem 0;
+    border-bottom: double 6px var(--royal-purple);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-brand h1 {
+    font-size: 2rem;
+    font-family: 'Cinzel', serif;
+    color: var(--royal-purple);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-links a::before,
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--royal-gold);
+    transition: width 0.3s;
+}
+
+.nav-links a::before {
+    left: 50%;
+    top: -5px;
+    transform: translateX(-50%);
+}
+
+.nav-links a::after {
+    right: 50%;
+    bottom: -5px;
+    transform: translateX(50%);
+}
+
+.nav-links a:hover::before,
+.nav-links a:hover::after,
+.nav-links a.active::before,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    padding: 8rem 0;
+    background-color: var(--background-alt);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="serif" font-size="60" fill="%234a1f7f" opacity="0.1">⚜</text></svg>');
+    opacity: 0.05;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero-title {
+    font-size: 4rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    font-style: italic;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background-color: var(--royal-purple);
+    color: white;
+    border: 2px solid var(--royal-purple);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--royal-purple);
+    border: 2px solid var(--royal-purple);
+    margin-left: 2rem;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(74, 31, 127, 0.2);
+}
+
+/* Sections */
+.section {
+    padding: 6rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::before,
+.section-title h2::after {
+    content: '⚜';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--royal-gold);
+    font-size: 2rem;
+}
+
+.section-title h2::before {
+    left: -3rem;
+}
+
+.section-title h2::after {
+    right: -3rem;
+}
+
+.section-title p {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.product-card {
+    background: white;
+    border: 2px solid var(--border-color);
+    overflow: hidden;
+    transition: all 0.4s;
+    position: relative;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--royal-purple), var(--royal-gold));
+    transform: scaleX(0);
+    transition: transform 0.4s;
+}
+
+.product-card:hover::before {
+    transform: scaleX(1);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(74, 31, 127, 0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-content {
+    padding: 2.5rem;
+}
+
+.product-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+.product-description {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.product-price {
+    color: var(--royal-purple);
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--background-alt);
+    color: var(--text-color);
+    padding: 6rem 0 4rem;
+    border-top: double 6px var(--royal-purple);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+}
+
+.footer-info h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--royal-purple);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.footer-info p {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.footer-links h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 1rem;
+}
+
+.footer-links ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 1.1rem;
+}
+
+.footer-links ul li a:hover {
+    color: var(--royal-purple);
+}
+
+.footer-bottom {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-brand h1 {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .section-title h2::before,
+    .section-title h2::after {
+        display: none;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}

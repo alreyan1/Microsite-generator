@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - {{ business.name }}</title>
+    <link href="assets/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                {% if business.logo_path %}
+                <img src="images/logo.jpg" alt="{{ business.name }}" class="logo">
+                {% endif %}
+                <h1>{{ business.name }}</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html" class="active">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>About {{ business.name }}</h1>
+                <div class="section-divider"></div>
+                {% if business.tagline %}
+                <p class="tagline">{{ business.tagline }}</p>
+                {% endif %}
+            </div>
+
+            <div class="about-story">
+                <div class="story-content">
+                    <h2>Our Heritage</h2>
+                    <p>At {{ business.name }}, we believe in the art of excellence. Every product we offer is a testament to our commitment to quality, luxury, and exceptional craftsmanship.</p>
+                    
+                    {% if business.tagline %}
+                    <p class="quote">"{{ business.tagline }}"</p>
+                    {% endif %}
+                    
+                    <p>Our journey is one of passion, dedication, and an unwavering commitment to providing our discerning clientele with products that exceed expectations.</p>
+                </div>
+                
+                {% if business.logo_path %}
+                <div class="story-image">
+                    <img src="images/logo.jpg" alt="{{ business.name }}">
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="contact-section">
+                <h2>Connect With Us</h2>
+                <div class="section-divider"></div>
+                <div class="contact-grid">
+                    {% if business.email %}
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p><a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if business.phone %}
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p><a href="tel:{{ business.phone }}">{{ business.phone }}</a></p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if business.address %}
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>{{ business.address }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if business.facebook or business.instagram or business.twitter %}
+                <div class="social-section">
+                    <h3>Follow Our Journey</h3>
+                    <div class="social-links">
+                        {% if business.facebook %}
+                        <a href="{{ business.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                        {% endif %}
+                        {% if business.instagram %}
+                        <a href="{{ business.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                        {% endif %}
+                        {% if business.twitter %}
+                        <a href="{{ business.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>{{ business.name }}</h3>
+                    {% if business.tagline %}
+                    <p>{{ business.tagline }}</p>
+                    {% endif %}
+                </div>
+                <div class="footer-contact">
+                    {% if business.email %}
+                    <p><i class="fas fa-envelope"></i> {{ business.email }}</p>
+                    {% endif %}
+                    {% if business.phone %}
+                    <p><i class="fas fa-phone"></i> {{ business.phone }}</p>
+                    {% endif %}
+                </div>
+                <div class="social-links">
+                    {% if business.facebook %}
+                    <a href="{{ business.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                    {% endif %}
+                    {% if business.instagram %}
+                    <a href="{{ business.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                    {% endif %}
+                    {% if business.twitter %}
+                    <a href="{{ business.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 {{ business.name }}. Crafted with excellence.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
